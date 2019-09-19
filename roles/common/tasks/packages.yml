@@ -1,0 +1,26 @@
+---
+  - name: Apt update
+    apt: update_cache=yes
+
+  - name: Apt upgrade
+    apt: upgrade=dist
+
+  - name: Install vim
+    apt: name=vim state=present
+
+  - name: Allowing ports
+    command: "{{ item }}"
+    with_items:
+      - ufw allow 80
+      - ufw allow 443
+      - ufw allow 22
+    become_user: root
+    
+  - name: Enabling UFW
+    ufw: state=enabled policy=allow
+    become_user: root
+
+  - name: Allowing ip
+    command: ufw allow from {{vpn_ip_address}} to any port 22
+    when: allow_vpn_connection
+    become_user: root

@@ -1,0 +1,19 @@
+---
+  name: "name" #Name of the project this name also is the showed in the welcome message of the deploy user
+  ansible_ssh_user: root #This is the ssh connection users, for default in digitalocean is root and aws is ubuntu
+  email: #Optional configuration for loggin email
+  users: # A list of users with theirs github users key to add it to deploy user
+    - name: #Github username
+      git: https://github.com/<GITHUB_USERNAME>.keys #Provide git key urls that save all user keys to connect with deploy user
+  security_ssh_port: 22
+  security_ssh_password_authentication: "no"
+  security_ssh_permit_root_login: "no"
+  security_ssh_usedns: "no"
+
+  security_sudoers_passwordless:
+    - deploy
+  #security_sudoers_passworded: #Uncomment if there will be sudoers requiring password"
+  security_autoupdate_enabled: true
+  security_fail2ban_enabled: true
+  allow_vpn_connection: false #if true, vpn_ip_address have to be setter
+  #vpn_ip_address: xxx.xxx.xxx

@@ -1,0 +1,25 @@
+---
+  - name: Create docker group
+    group: name=docker state=present
+
+  - name: Create deploy group
+    group: name=deploy state=present
+
+  - name: Create user
+    user:
+      name: deploy
+      state: present
+      groups: docker,deploy
+      home: /home/deploy
+      shell: /bin/bash
+
+  - name: Add .bash_history file to deploy user
+    file: path=/home/deploy/.bash_history state=touch owner=deploy group=docker mode=0644
+
+  - name: Creates directory
+    file: path=/home/deploy/.ssh state=directory owner=deploy
+
+  - name: Set up authorized_keys for the deploy user
+    authorized_key: user=deploy key="{{ item.git }}"
+    with_items:
+      - "{{users}}"

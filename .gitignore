@@ -1,0 +1,6 @@
+.vagrant/*
+hosts
+site.yml
+vars.yml
+site.retry
+*.DS_Store

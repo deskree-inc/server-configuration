@@ -1,0 +1,13 @@
+---
+  - name: Install fliglet
+    apt: name=figlet state=present
+
+  - name: Install toilet
+    apt: name=toilet state=present
+
+  - name: Add bashsrc file
+    template:
+      src: bashrc.jinja2
+      dest: /home/deploy/.bashrc
+      owner: deploy
+      mode: 0644

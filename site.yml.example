@@ -1,0 +1,21 @@
+---
+  - hosts: host_name #if you want to use vagrant change it to all
+    vars_files:
+      - group_vars/vars.yml
+    pre_tasks:
+      - name: apt-get update
+        raw: apt-get update -qq
+      - name: 'install python2'
+        raw: sudo apt-get -y install python-simplejson
+    roles:
+      - role: common
+        tags:
+          - common
+        become: yes
+        become_user: root
+
+      - role: geerlingguy.security
+        tags:
+          - geerlingguy.security
+        become: yes
+        become_user: root
