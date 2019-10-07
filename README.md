@@ -16,7 +16,7 @@ First you need to install ansible on your computer, please follow these [instruc
 
 Download the roles needed by this playbook from [ansbile galaxy](https://galaxy.ansible.com/) - ansibles remote repo for common roles - by running `ansible-galaxy install -r requirements.txt`
 
-# 3 Variables
+## 3 Variables
 
 There are several variables that need to be configured in this ansible role, they are located in `group_vars/vars.yml.example`. You'll need to change this file to be called `group_vars/vars.yml` and then go through these variables to set them as you please: 
 
@@ -28,7 +28,7 @@ There are several variables that need to be configured in this ansible role, the
 * `allow_vpn_connection` predefined by `false`. If you have it set to true then `ufw` will only allow a vpn ip address you specify in the next variable
 * `vpn_ip_address` (only if `allow_vpn_connection` is `true`) have the value of the vpn ip address
 
-# 4 Add Server to hosts file
+## 4 Add Server to hosts file
 
 The hosts file is an [inventory](http://docs.ansible.com/ansible/intro_inventory.html) for ansible of different servers you provision. You need to add your host information as such: 
 ```
@@ -38,19 +38,19 @@ www.example.org
 
 Then change `hosts.example` to `hosts`. 
 
-# 5 Add site.yml
+## 5 Add site.yml
 
 Copy the `site.yml.example` and your proper vars, if you want the pre defined values just leave it as is, and change the name to `site.yml`. Likely though you'll want to change your host name.
 
 
-# 6. Test
+## 6. Test
 You can test using Vagrant if you'd like. 
 
 Install [Vagrant](https://www.vagrantup.com/), and run `vagrant up` (if this doesn't run `ansible` just run `vagrant provision`) this will run the script inside a virtual machine and will be plugged with ngrok
 
 **Documentation needed**
 
-# 7. Run on a server
+## 7. Run on a server
 
 First you'll want to test your connection with: `ansible -vvvv -i hosts <NAME OF GROUP IN HOSTS` -m ping` 
 
